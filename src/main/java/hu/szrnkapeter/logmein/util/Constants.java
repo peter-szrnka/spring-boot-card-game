@@ -9,6 +9,8 @@ public interface Constants {
 	public static final String CARDLIST_CLUBS = "CA,C2,C3,C4,C5,C6,C7,C8,C9,C10,CJ,CQ,CK";
 	public static final String CARDLIST_DIAMONDS = "DA,D2,D3,D4,D5,D6,D7,D8,D9,D10,DJ,DQ,DK";
 	
+	public static final String COMMA = ",";
+	
 	/**
 	 * Yes, thats not a pretty solution, but the easiest :)
 	 */

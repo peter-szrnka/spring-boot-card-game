@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.apache.commons.collections4.SetUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -26,10 +27,13 @@ import hu.szrnkapeter.logmein.repository.GameRepository;
 import hu.szrnkapeter.logmein.repository.PlayerRepository;
 import hu.szrnkapeter.logmein.type.CardGameErrorCode;
 import hu.szrnkapeter.logmein.type.CardGameException;
+import hu.szrnkapeter.logmein.util.Constants;
 
 @Service
 public class GameServiceImpl extends AbstractService<GameEntity, GameRepository> implements GameService {
 	
+	
+
 	private static final Logger LOG = LoggerFactory.getLogger(GameServiceImpl.class);
 
 	private PlayerRepository playerRepository;
@@ -81,16 +85,18 @@ public class GameServiceImpl extends AbstractService<GameEntity, GameRepository>
 		
 		PlayerEntity player = getPlayerById(playerId);
 		
+		AtomicBoolean cardSaved = new AtomicBoolean(false);
+
 		game.getDecks().forEach(deck -> {
-			if(deck.getCards().isEmpty()) {
+			if(cardSaved.get() || deck.getCards().isEmpty()) {
 				return;
 			}
 
 			// Select a card from the deck
-			List<String> cardList = new ArrayList<>(Arrays.asList(StringUtils.split(deck.getCards(), ",")));
+			List<String> cardList = new ArrayList<>(Arrays.asList(StringUtils.split(deck.getCards(), Constants.COMMA)));
 			
 			SecureRandom r = new SecureRandom();
-			int selectedIndex = r.nextInt(cardList.size());
+			int selectedIndex = r.nextInt(cardList.size()-1);
 			String selectedCard = cardList.get(selectedIndex);
 			
 			PlayerCardEntity playerCard = new PlayerCardEntity();
@@ -104,8 +110,11 @@ public class GameServiceImpl extends AbstractService<GameEntity, GameRepository>
 			// Remove the card from the deck
 			cardList.remove(selectedIndex);
 			
-			deck.setCards(StringUtils.join(cardList, ","));
+			deck.setCards(StringUtils.join(cardList, Constants.COMMA));
 			deckRepository.save(deck);
+			
+			// This is necessary to avoid dealing cards from multiple decks
+			cardSaved.set(true);
 		});
 	}
 
