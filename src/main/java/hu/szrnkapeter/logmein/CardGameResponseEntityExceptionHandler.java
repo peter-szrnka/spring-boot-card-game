@@ -27,12 +27,7 @@ public class CardGameResponseEntityExceptionHandler extends ResponseEntityExcept
 	 */
 	@ExceptionHandler({ CardGameException.class })
 	public ResponseEntity<ErrorResponseDto> handleCardGameException(final CardGameException e, final HandlerMethod handlerMethod) {
-		ErrorResponseDto response = new ErrorResponseDto();
-		response.setSuccess(false);
-		response.setMessage(e.getErrorCode().getMessage());
-		response.setErrorCode(e.getErrorCode().getCode());
-
-		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		return createResponseEntity(e.getErrorCode().getMessage(), e.getErrorCode().getCode());
 	}
 
 	/**
@@ -44,12 +39,16 @@ public class CardGameResponseEntityExceptionHandler extends ResponseEntityExcept
 	 */
 	@ExceptionHandler({ Exception.class })
 	public ResponseEntity<ErrorResponseDto> handleSomeException(final Exception e, final HandlerMethod handlerMethod) {
+		LOG.error("Exception handled: {}", e.getMessage(), e);
+		return createResponseEntity(e.getMessage(), CardGameErrorCode.GENERAL_ERROR.getCode());
+	}
+	
+	private ResponseEntity<ErrorResponseDto> createResponseEntity(String message, int code) {
 		ErrorResponseDto response = new ErrorResponseDto();
 		response.setSuccess(false);
-		response.setMessage(e.getMessage());
-		response.setErrorCode(CardGameErrorCode.GENERAL_ERROR.getCode());
-		
-		LOG.error("Exception handled: {}", e.getMessage(), e);
+		response.setMessage(message);
+		response.setErrorCode(code);
+
 		return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
