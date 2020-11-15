@@ -6,6 +6,9 @@ import java.util.Set;
 import hu.szrnkapeter.logmein.type.GameStatus;
 import lombok.Data;
 
+/**
+ * Returns information about all players.
+ */
 @Data
 public class GameDataDto {
 

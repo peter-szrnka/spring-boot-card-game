@@ -1,7 +1,7 @@
 package hu.szrnkapeter.logmein.entity;
 
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,7 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.google.common.collect.Sets;
+import com.google.common.collect.Lists;
 
 import hu.szrnkapeter.logmein.type.GameStatus;
 import lombok.Getter;
@@ -42,8 +42,8 @@ public class GameEntity extends BaseIdEntity {
 	private GameStatus orderStatus = GameStatus.STARTED;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "game", orphanRemoval = true)
-	private Set<PlayerEntity> players = Sets.newHashSet();
+	private List<PlayerEntity> players = Lists.newArrayList();
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "game", orphanRemoval = true)
-	private Set<DeckEntity> decks = Sets.newHashSet();
+	private List<DeckEntity> decks = Lists.newArrayList();
 }

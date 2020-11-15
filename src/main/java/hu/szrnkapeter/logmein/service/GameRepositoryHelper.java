@@ -15,6 +15,12 @@ public class GameRepositoryHelper extends AbstractService<GameEntity, GameReposi
 		super(gameRepository, CardGameErrorCode.GAME_NOT_FOUND);
 	}
 	
+	/**
+	 * This is just a workaround to avoid code duplications.
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public GameEntity getGameEntityById(Long id) {
 		return getEntityById(id);
 	}

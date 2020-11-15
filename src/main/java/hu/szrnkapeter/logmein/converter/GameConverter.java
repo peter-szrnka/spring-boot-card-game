@@ -64,7 +64,7 @@ public class GameConverter {
 			int playerCardsValue = player.getCards().stream() //
 					.map(card -> CardValue.getValueByName(card.getCard())) //
 					.filter(item -> item != null) //
-					.mapToInt(i -> i.intValue()) //
+					.mapToInt(i -> i.getValue()) //
 					.sum();
 
 			PlayerSummaryDto playerSummaryDto = new PlayerSummaryDto();

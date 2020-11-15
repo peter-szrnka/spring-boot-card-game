@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import hu.szrnkapeter.logmein.entity.DeckEntity;
-import hu.szrnkapeter.logmein.entity.GameEntity;
 
 @Transactional
 @Repository

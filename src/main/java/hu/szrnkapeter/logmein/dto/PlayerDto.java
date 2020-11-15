@@ -6,6 +6,9 @@ import com.google.common.collect.Sets;
 
 import lombok.Data;
 
+/**
+ * Holds player related informations
+ */
 @Data
 public class PlayerDto {
 

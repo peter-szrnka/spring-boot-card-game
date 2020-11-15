@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import hu.szrnkapeter.logmein.dto.GameDataDto;
 import hu.szrnkapeter.logmein.dto.GameDto;
+import hu.szrnkapeter.logmein.dto.GetCardCountDto;
+import hu.szrnkapeter.logmein.dto.GetCardSumDto;
 import hu.szrnkapeter.logmein.service.GameService;
 import hu.szrnkapeter.logmein.util.Constants;
 
@@ -61,6 +63,17 @@ public class GameController {
 	public @ResponseBody GameDto getById(@PathVariable("id") Long id) {
 		return service.getById(id);
 	}
+	
+	@GetMapping(path = Constants.ID + "/getCardCount", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public @ResponseBody GetCardCountDto getCardCount(@PathVariable("id") Long id) {
+		return service.getCardCount(id);
+	}
+
+	@GetMapping(path = Constants.ID + "/getCardSum", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public @ResponseBody GetCardSumDto getCardSum(@PathVariable("id") Long id) {
+		return service.getCardSum(id);
+	}
+
 	
 	@PostMapping(path= Constants.ID + "/shuffle", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public @ResponseBody ResponseEntity<Void> shuffleDecks(@PathVariable("id") Long id) {

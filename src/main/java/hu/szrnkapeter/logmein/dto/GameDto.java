@@ -5,6 +5,9 @@ import java.time.LocalDate;
 import hu.szrnkapeter.logmein.type.GameStatus;
 import lombok.Data;
 
+/**
+ * Basic DTO to hold Game informations.
+ */
 @Data
 public class GameDto {
 

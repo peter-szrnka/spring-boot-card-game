@@ -10,22 +10,24 @@ import org.springframework.stereotype.Service;
 
 import hu.szrnkapeter.logmein.type.CardGameErrorCode;
 import hu.szrnkapeter.logmein.type.CardGameException;
+import hu.szrnkapeter.logmein.util.Constants;
 
 @Service
 public class ShuffleServiceImpl implements ShuffleService {
 
 	/*
 	 * (non-Javadoc)
+	 * 
 	 * @see hu.szrnkapeter.logmein.service.ShuffleService#shuffle(java.lang.String)
 	 */
 	@Override
 	public String shuffle(String originalDeck) {
-		if(originalDeck == null || originalDeck.isEmpty()) {
+		if (originalDeck == null || originalDeck.isEmpty()) {
 			throw new CardGameException(CardGameErrorCode.DECK_EMPTY);
 		}
 
-		List<String> cardList = Arrays.asList(StringUtils.split(originalDeck, ","));
+		List<String> cardList = Arrays.asList(StringUtils.split(originalDeck, Constants.COMMA));
 		Collections.shuffle(cardList, new SecureRandom());
-		return StringUtils.join(cardList,",");
+		return StringUtils.join(cardList, Constants.COMMA);
 	}
 }
