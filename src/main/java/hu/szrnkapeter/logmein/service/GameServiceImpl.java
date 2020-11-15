@@ -35,6 +35,7 @@ import hu.szrnkapeter.logmein.entity.PlayerEntity;
 import hu.szrnkapeter.logmein.repository.DeckRepository;
 import hu.szrnkapeter.logmein.repository.GameRepository;
 import hu.szrnkapeter.logmein.repository.PlayerRepository;
+import hu.szrnkapeter.logmein.service.shuffle.ShuffleService;
 import hu.szrnkapeter.logmein.type.CardGameErrorCode;
 import hu.szrnkapeter.logmein.type.CardGameException;
 import hu.szrnkapeter.logmein.type.CardSuit;

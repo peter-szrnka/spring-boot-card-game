@@ -1,4 +1,4 @@
-package hu.szrnkapeter.logmein.service;
+package hu.szrnkapeter.logmein.service.shuffle;
 
 /**
  * Shuffle services

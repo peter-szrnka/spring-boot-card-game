@@ -1,4 +1,4 @@
-package hu.szrnkapeter.test;
+package hu.szrnkapeter.logmein;
 
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;

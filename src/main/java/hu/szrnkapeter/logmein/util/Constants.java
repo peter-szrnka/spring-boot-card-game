@@ -10,6 +10,7 @@ public interface Constants {
 	public static final String CARDLIST_DIAMONDS = "DA,D2,D3,D4,D5,D6,D7,D8,D9,D10,DJ,DQ,DK";
 	
 	public static final String COMMA = ",";
+	public static final String CONFIG_SHUFFLE_STRATEGY = "shuffle.strategy";
 	
 	/**
 	 * Yes, thats not a pretty solution, but the easiest :)
