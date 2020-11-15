@@ -32,7 +32,7 @@ public class PlayerController {
 	public ResponseEntity<Long> create(@RequestBody PlayerDto dto) {
 		return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
 	}
-	
+
 	@DeleteMapping(path = Constants.ID, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
 		service.delete(id);
@@ -42,5 +42,10 @@ public class PlayerController {
 	@GetMapping(path = Constants.ID, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public @ResponseBody PlayerDto getById(@PathVariable("id") Long id) {
 		return service.getById(id);
+	}
+	
+	@GetMapping(path = "/byName" + Constants.NAME, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public @ResponseBody PlayerDto getByName(@PathVariable("name") String name) {
+		return service.getByName(name);
 	}
 }

@@ -1,6 +1,7 @@
 package hu.szrnkapeter.logmein.service;
 
 import java.util.HashSet;
+import java.util.Optional;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,7 +13,6 @@ import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.modules.junit4.PowerMockRunner;
-
 import hu.szrnkapeter.logmein.converter.PlayerConverter;
 import hu.szrnkapeter.logmein.dto.PlayerDto;
 import hu.szrnkapeter.logmein.entity.GameEntity;
@@ -47,8 +47,20 @@ public class PlayerServiceImplTest {
 		service.create(createInputDto());
 	}
 	
+	@Test(expected = CardGameException.class)
+	public void test02_create_playerAlreadyExists() {
+		GameEntity mockGameEntity = new GameEntity();
+		Mockito.when(helper.getGameEntityById(ArgumentMatchers.eq(1L))).thenReturn(mockGameEntity);
+		PlayerEntity playerEntity = new PlayerEntity();
+		playerEntity.setId(2L);
+		Mockito.when(repository.findByName(ArgumentMatchers.anyString())).thenReturn(Optional.of(playerEntity));
+		
+		service.create(createInputDto());
+		Mockito.verify(helper).getGameEntityById(ArgumentMatchers.eq(1L));
+	}
+	
 	@Test
-	public void test02_create() {
+	public void test03_create() {
 		GameEntity mockGameEntity = new GameEntity();
 		Mockito.when(helper.getGameEntityById(ArgumentMatchers.eq(1L))).thenReturn(mockGameEntity);
 		PlayerEntity playerEntity = new PlayerEntity();

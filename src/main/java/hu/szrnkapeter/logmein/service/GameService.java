@@ -49,6 +49,14 @@ public interface GameService {
 	 * @return
 	 */
 	GameDataDto getAllPlayers(Long id);
+
+	/**
+	 * Returns with all players data, and the value of their cards by game name.
+	 * 
+	 * @param name
+	 * @return
+	 */
+	GameDataDto getAllPlayersByName(String name);
 	
 	/**
 	 * Counts all cards by color, per deck.

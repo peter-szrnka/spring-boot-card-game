@@ -9,7 +9,8 @@ public enum CardGameErrorCode {
 	GAME_NOT_FOUND(2, "Game not found!"),
 	DECK_EMPTY(3, "Deck is empty!"),
 	PLAYER_NOT_FOUND(4, "Player not found!"),
-	NO_DECK_FOR_GAME(5, "Card deck not found for game!");
+	NO_DECK_FOR_GAME(5, "Card deck not found for game!"),
+	PLAYER_ALREADY_EXISTS(6, "Player already exists!");
 	
 	CardGameErrorCode(int c, String m) {
 		code = c;

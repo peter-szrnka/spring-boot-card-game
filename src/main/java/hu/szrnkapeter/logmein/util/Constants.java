@@ -3,6 +3,7 @@ package hu.szrnkapeter.logmein.util;
 public interface Constants {
 
 	public static final String ID = "/{id}";
+	public static final String NAME = "/{name}";
 
 	public static final String CARDLIST_HEARTS = "HA,H2,H3,H4,H5,H6,H7,H8,H9,H10,HJ,HQ,HK";
 	public static final String CARDLIST_SPADES = "SA,S2,S3,S4,S5,S6,S7,S8,S9,S10,SJ,SQ,SK";

@@ -159,6 +159,21 @@ public class GameServiceImpl extends AbstractService<GameEntity, GameRepository>
 
 	/*
 	 * (non-Javadoc)
+	 * @see hu.szrnkapeter.logmein.service.GameService#getAllPlayersByName(java.lang.String)
+	 */
+	@Override
+	public GameDataDto getAllPlayersByName(String name) {
+		Optional<GameEntity> result = repository.findByTitle(name);
+		
+		if(!result.isPresent()) {
+			throw new CardGameException(CardGameErrorCode.GAME_NOT_FOUND);
+		}
+
+		return converter.toGameDataDto(result.get());
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see hu.szrnkapeter.logmein.service.GameService#getById(java.lang.Long)
 	 */
 	@Override

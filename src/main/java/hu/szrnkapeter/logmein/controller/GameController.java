@@ -58,6 +58,11 @@ public class GameController {
 	public @ResponseBody GameDataDto getAllPlayers(@PathVariable("id") Long id) {
 		return service.getAllPlayers(id);
 	}
+	
+	@GetMapping(path = "/byName/" + Constants.NAME + "/players", produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
+	public @ResponseBody GameDataDto getAllPlayersByName(@PathVariable("name") String name) {
+		return service.getAllPlayersByName(name);
+	}
 
 	@GetMapping(path = Constants.ID, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 	public @ResponseBody GameDto getById(@PathVariable("id") Long id) {

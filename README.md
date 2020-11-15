@@ -27,8 +27,10 @@ The following list shows the status of the new functions ([+] is ready, [-] is n
   - POST /game/{id}/deal/{playerId}
 - [+] Get the list of cards for a player
   - GET /player/{id}
+  - GET /player/byName/{name} (NEW)
 - [+] Get the card values for all players
   - GET /game/{id}/players
+  - GET /game/byName/{name} (NEW)
 - [+] Get undealt card count
   - GET /game/{id}/getCardCount
 - [+] Get card count with an order

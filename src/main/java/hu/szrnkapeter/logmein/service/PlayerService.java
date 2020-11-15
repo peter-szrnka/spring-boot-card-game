@@ -16,6 +16,13 @@ public interface PlayerService {
 	Long create(PlayerDto dto);
 
 	/**
+	 * Deletes a player by id.
+	 * 
+	 * @param id
+	 */
+	void delete(Long id);
+
+	/**
 	 * Returns a player by the given id.
 	 * 
 	 * @param id
@@ -24,9 +31,10 @@ public interface PlayerService {
 	PlayerDto getById(Long id);
 
 	/**
-	 * Deletes a player by id.
+	 * Returns a player by name.
 	 * 
-	 * @param id
+	 * @param name
+	 * @return
 	 */
-	void delete(Long id);
+	PlayerDto getByName(String name);
 }

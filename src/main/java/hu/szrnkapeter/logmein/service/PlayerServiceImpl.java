@@ -1,5 +1,7 @@
 package hu.szrnkapeter.logmein.service;
 
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +42,12 @@ public class PlayerServiceImpl extends AbstractService<PlayerEntity, PlayerRepos
 			throw new CardGameException(CardGameErrorCode.GAME_NOT_FOUND);
 		}
 		
+		Optional<PlayerEntity> result = repository.findByName(dto.getName());
+		
+		if(result.isPresent()) {
+			throw new CardGameException(CardGameErrorCode.PLAYER_ALREADY_EXISTS);
+		}
+		
 		PlayerEntity newPlayer = repository.save(converter.createNewPlayer(game, dto));
 		LOG.info("New player(Id={}) created for game={}", newPlayer.getId(), dto.getGameId());
 		return newPlayer.getId();
@@ -62,5 +70,20 @@ public class PlayerServiceImpl extends AbstractService<PlayerEntity, PlayerRepos
 	@Override
 	public PlayerDto getById(Long id) {
 		return converter.toDto(getEntityById(id));
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see hu.szrnkapeter.logmein.service.PlayerService#getByName(java.lang.String)
+	 */
+	@Override
+	public PlayerDto getByName(String name) {
+		Optional<PlayerEntity> result = repository.findByName(name);
+		
+		if(!result.isPresent()) {
+			throw new CardGameException(CardGameErrorCode.PLAYER_NOT_FOUND);
+		}
+		
+		return converter.toDto(result.get());
 	}
 }
