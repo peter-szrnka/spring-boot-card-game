@@ -30,7 +30,9 @@ The following list shows the status of the new functions ([+] is ready, [-] is n
 - [+] Get the card values for all players
   - GET /game/{id}/players
 - [+] Get undealt card count
+  - GET /game/{id}/getCardCount
 - [+] Get card count with an order
+  - GET /game/{id}/getCardSum
 - [+] Shuffle game deck
   - POST /game/{id}/shuffle
 
